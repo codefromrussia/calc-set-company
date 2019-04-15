@@ -2,8 +2,8 @@ import React from 'react'
 import { Works } from'./Works'
 import { BuildingTpRtp } from'./BuildingTpRtp'
 
-//Воздушная линия 3 категории надёжности
-class AirLineThreeCategory extends React.Component {
+//Постройка для города 3-ей категории надёжности
+class CityBuildingThreeCategory extends React.Component {
 	render() {
 		const {data, handleInputChange, calcWorksTpTtp, calcResult} = this.props;
 		const {worksPrice, works} = data;
@@ -11,7 +11,8 @@ class AirLineThreeCategory extends React.Component {
 		return (
 			<div>
 				<Works works={works}
-							 handleInputChange={handleInputChange} />
+							 handleInputChange={handleInputChange}
+							 calcResult={calcResult} />
 				{worksPrice > 0 && <BuildingTpRtp data={data} 
 																					handleInputChange={handleInputChange}
 																					calcWorksTpTtp={calcWorksTpTtp}
@@ -21,4 +22,4 @@ class AirLineThreeCategory extends React.Component {
 	}
 }
 
-export { AirLineThreeCategory }
+export { CityBuildingThreeCategory }

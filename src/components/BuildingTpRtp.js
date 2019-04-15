@@ -56,7 +56,8 @@ class BuildingTpRtp extends React.Component {
 					РТП
 				</label>
 				{worksTpRtp && tpRtp !== 'no' && <Works works={worksTpRtp}
-																								handleInputChange={handleInputChange} />}
+																								handleInputChange={handleInputChange}
+																								calcResult={calcResult} />}
 			</div>
 		)
 	}

@@ -1,164 +1,9 @@
 import React, { Component } from 'react';
-import { Location } from'./components/Location'
-import { CityTypeJoining } from'./components/CityTypeJoining'
+import { Location } from'./components/Location';
+import { CityTypeJoining } from'./components/CityTypeJoining';
+import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2} from'./data/data.js'; // Input
 
 import './App.css';
-
-//Набор работ "Воздушная линия". Уровень напряжения до 1кв
-const worksVl = [
-	{
-		id: 1,
-		text: 'опоры ж/б, СИП до 50мм2 включительно, алюм.',
-		price: 909050,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 2,
-		text: 'опоры ж/б, СИП от 50 до100мм2 включительно, алюм.',
-		price: 817303.93,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 3,
-		text: 'опоры ж/б, СИП от 100 до 200мм2 включительно, алюм.',
-		price: 2216445.97,
-		priceCategory: 'worksPrice'
-	}
-]
-
-//Набор работ "Воздушная линия". Уровень напряжения до 20кв
-const worksVl2 = [
-	{
-		id: 1,
-		text: 'опоры ж/б, СИП до 50мм2 включительно, алюм.',
-		price: 909050,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 2,
-		text: 'опоры ж/б, СИП от 50 до100мм2 включительно, алюм.',
-		price: 817303.93,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 3,
-		text: 'опоры ж/б, СИП от 100 до 200мм2 включительно, алюм.',
-		price: 2216445.97,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 4,
-		text: 'опоры ж/б, СИП до 50мм2 включительно, алюм.',
-		price: 1522503.72,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 5,
-		text: 'опоры ж/б, СИП от 50 до100мм2 включительно, алюм.',
-		price: 1898569.26,
-		priceCategory: 'worksPrice'
-	},
-	{
-		id: 6,
-		text: 'опоры ж/б, неизолированный провод до 50мм2 включительно, сталеалюм.',
-		price: 474435.28,
-		priceCategory: 'worksPrice'
-	},
-];
-
-//Работы ТП
-const worksTp = [
-	{
-		id: 7,
-		text: 'ТП, однотрансформаторная, до 25кВА включительно',
-		price: 23327.89,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 8,
-		text: 'ТП, однотрансформаторная, от 25 до 100кВА включительно',
-		price: 7646.38,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 9,
-		text: 'ТП, однотрансформаторная, от 100 до 250кВА включительно',
-		price: 3161.33,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 10,
-		text: 'ТП, однотрансформаторная, от 250 до 500кВА включительно',
-		price: 2786.84,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 11,
-		text: 'ТП, однотрансформаторная, от 500 до 900кВА включительно',
-		price: 1864.51,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 12,
-		text: 'ТП, однотрансформаторная, свыше 1000кВА',
-		price: 1631.45,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 13,
-		text: 'ТП, двухтрансформаторная, от 25 до 100кВА включительно',
-		price: 25521.16,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 14,
-		text: 'ТП, двухтрансформаторная, от 100 до 250кВА включительно',
-		price: 9159.2,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 15,
-		text: 'ТП, двухтрансформаторная, от 250 до 500кВА включительно',
-		price: 6511.95,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 16,
-		text: 'ТП, двухтрансформаторная, от 500 до 900кВА включительно',
-		price: 13262.56,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 17,
-		text: 'ТП, двухтрансформаторная, свыше 1000кВА',
-		price: 4822.78,
-		priceCategory: 'worksPriceTpRtp'
-	},
-];
-
-//Работы РТП
-const worksRtp = [
-	{
-		id: 18,
-		text: 'РТП, однотрансформаторная и более, от 500 до 900кВА',
-		price: 16262.55,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 19,
-		text: 'РТП, двухтрансформаторная и более, от 500 до 900кВА',
-		price: 20370.63,
-		priceCategory: 'worksPriceTpRtp'
-	},
-	{
-		id: 20,
-		text: 'РТП, двухтрансформаторная и более, свыше 1000кВА',
-		price: 13284.32,
-		priceCategory: 'worksPriceTpRtp'
-	}
-];
-
-//END ВХОДНЫЕ ДАННЫЕ
 
 class App extends Component {
 	state = {
@@ -208,7 +53,11 @@ class App extends Component {
 		if ( +category === 3 && powerLine === "air" && voltage === "до 1") {
 			this.setState({works: worksVl});
 		} else if ( +category === 3 && powerLine === "air" && voltage === "до 20" ) {
-			this.setState({works: worksVl2});
+			this.setState({works: [...worksVl, ...worksVl2]});
+		} else if ( +category === 3 && powerLine === "cabel" && voltage === "до 1" ) {
+			this.setState({works: worksCl});
+		} else if ( +category === 3 && powerLine === "cabel" && voltage === "до 20" ) {
+			this.setState({works: [...worksCl, ...worksCl2]});
 		} else {
 			this.setState({works: ''});
 		}
@@ -229,7 +78,7 @@ class App extends Component {
 
 	//Обработка вариантов
 	calcResult = () => {	
-		const { x1, x2, x3, location, type, building, l, tpRtp, worksPrice, lBuilding } = this.state;
+		const { x1, x2, x3, location, type, building, l, tpRtp, worksPrice, lBuilding, worksPriceTpRtp } = this.state;
 
 		if (x1 && x2 <= 15 && location === "city" && type === "old" && l > 0 && l <= 0.3) { //Пункт 1.1.1
 			this.result(550, 550);
@@ -246,6 +95,14 @@ class App extends Component {
 										 building === "yes" &&
 										 tpRtp === "no") {   //Пункт 1.1.3.2 БЕЗ ТП/РТП
 			this.result(((536.6*x3)+(worksPrice*x3))*1.2, (15415.33 + (worksPrice*lBuilding))*1.2);
+		} else if (x1 && x2 >= 151 && 
+										 x2 <= 8900 && 
+										 location === "city" && 
+										 type === "old" && 
+										 building === "yes" &&
+										 (tpRtp === "tp" ||
+										 tpRtp === "rtp") ) {   //Пункт 1.1.3.2 Для ТП И РТП
+			this.result(((536.6*x3)+(worksPrice*x3)+(worksPriceTpRtp*x3))*1.2, (15415.33 + (worksPrice*lBuilding)+(worksPriceTpRtp*x3))*1.2);
 		} else {
 			this.result(0, 0);
 		}

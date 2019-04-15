@@ -1,7 +1,9 @@
 import React from 'react'
 
 class Works extends React.Component {
-	renderWorks = (arr, func) => {
+	renderWorks = (arr) => {
+		const { handleInputChange, calcResult } = this.props;
+
 		const worksTemplate = arr.map(function(item) {
 			return (
 				<div key={item.id}>
@@ -11,7 +13,12 @@ class Works extends React.Component {
 							name="work"
 							type="radio"
 							value={item.price}
-							onChange={func}
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcResult()},1);
+								}
+							}
 						/>
 						{item.text}
 					</label>
@@ -23,12 +30,12 @@ class Works extends React.Component {
 	}
 
 	render() {
-		const { works, handleInputChange } = this.props;
+		const { works } = this.props;
 
 		return (
 			<div>
 				<h2>Набор работ:</h2>
-				{ this.renderWorks(works, handleInputChange) }
+				{ this.renderWorks(works) }
 			</div>
 		)
 	}

@@ -1,12 +1,11 @@
 import React from 'react'
-import { CabelLineThreeCategory } from'./CabelLineThreeCategory'
-import { AirLineThreeCategory } from'./AirLineThreeCategory'
+import { CityBuildingThreeCategory } from'./CityBuildingThreeCategory'
 
 //Строительство для города
 class CityBuilding extends React.Component {
 	render() {
 		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
-		const {works, category, powerLine} = data;
+		const {works, category} = data;
 
 		return (
 			<div>
@@ -118,11 +117,10 @@ class CityBuilding extends React.Component {
 					/>
 					Кабельная
 				</label>
-				{works && +category === 3 && powerLine === 'air' && <AirLineThreeCategory data={data}
-																																									handleInputChange={handleInputChange}
-																																									calcWorksTpTtp={calcWorksTpTtp}
-																																									calcResult={calcResult} />}
-				{works && +category === 3 && powerLine === 'cabel' && <CabelLineThreeCategory />}
+				{works && +category === 3 && <CityBuildingThreeCategory data={data}
+																													      handleInputChange={handleInputChange}
+																													      calcWorksTpTtp={calcWorksTpTtp}
+																													      calcResult={calcResult} />}
 			</div>
 		)
 	}
