@@ -9,8 +9,8 @@ class Works extends React.Component {
 				<div key={item.id}>
 					<label>
 						<input
-							id={item.priceCategory}
-							name="work"
+							id={item.category}
+							name={item.category}
 							type="radio"
 							value={item.price}
 							onChange={

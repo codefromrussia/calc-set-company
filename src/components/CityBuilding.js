@@ -1,8 +1,29 @@
 import React from 'react'
-import { CityBuildingThreeCategory } from'./CityBuildingThreeCategory'
+import { CityBuildingWorks } from'./CityBuildingWorks'
 
 //Строительство для города
 class CityBuilding extends React.Component {
+	renderAirCabel() {
+		const {handleInputChange, calcWorks} = this.props;
+		return (
+			<label>
+				<input
+					id="powerLine"
+					name="power-line"
+					type="radio"
+					value="aircabel"
+					onChange={
+						(e) => {
+							handleInputChange(e);
+							setTimeout(() => {calcWorks()},1);
+						}
+					}
+				/>
+				Кабельная линия + Воздушная линия
+			</label>
+		)
+	}
+
 	render() {
 		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
 		const {works, category} = data;
@@ -33,6 +54,7 @@ class CityBuilding extends React.Component {
 							(e) => {
 								handleInputChange(e);
 								setTimeout(() => {calcWorks()},1);
+								setTimeout(() => {calcResult()},1);
 							}
 						}
 					/>
@@ -48,6 +70,7 @@ class CityBuilding extends React.Component {
 							(e) => {
 								handleInputChange(e);
 								setTimeout(() => {calcWorks()},1);
+								setTimeout(() => {calcResult()},1);
 							}
 						}
 					/>
@@ -87,6 +110,7 @@ class CityBuilding extends React.Component {
 				</label>
 
 				<h2>Линия электропередачи:</h2>
+
 				<label>
 					<input
 						id="powerLine"
@@ -117,10 +141,11 @@ class CityBuilding extends React.Component {
 					/>
 					Кабельная
 				</label>
-				{works && +category === 3 && <CityBuildingThreeCategory data={data}
-																													      handleInputChange={handleInputChange}
-																													      calcWorksTpTtp={calcWorksTpTtp}
-																													      calcResult={calcResult} />}
+				{+category === 2 && this.renderAirCabel()}
+				{works && <CityBuildingWorks data={data}
+																		 handleInputChange={handleInputChange}
+																		 calcWorksTpTtp={calcWorksTpTtp}
+																		 calcResult={calcResult} />}
 			</div>
 		)
 	}
