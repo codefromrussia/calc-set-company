@@ -1,8 +1,8 @@
 import React from 'react'
-import { CityBuilding } from'./CityBuilding'
+import { Building } from'./Building'
 
-// Существующее соединение для города Вариант 3
-class CityTypeJoiningOldThree extends React.Component {
+// Существующее соединение Вариант 3
+class TypeJoiningOldThree extends React.Component {
 	render() {
 		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
 		const {building} = data;
@@ -34,14 +34,14 @@ class CityTypeJoiningOldThree extends React.Component {
 						} />
 					Нет
 				</label>
-				{building === 'yes' && <CityBuilding data={data}
-																						 handleInputChange={handleInputChange}
-																						 calcWorks={calcWorks}
-																						 calcWorksTpTtp={calcWorksTpTtp}
-																						 calcResult={calcResult} />}
+				{building === 'yes' && <Building data={data}
+																				 handleInputChange={handleInputChange}
+																				 calcWorks={calcWorks}
+																				 calcWorksTpTtp={calcWorksTpTtp}
+																				 calcResult={calcResult} />}
 			</div>
 		)
 	}
 }
 
-export { CityTypeJoiningOldThree }
+export { TypeJoiningOldThree }

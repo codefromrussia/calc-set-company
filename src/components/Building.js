@@ -1,8 +1,8 @@
 import React from 'react'
-import { CityBuildingWorks } from'./CityBuildingWorks'
+import { BuildingWorks } from'./BuildingWorks'
 
 //Строительство для города
-class CityBuilding extends React.Component {
+class Building extends React.Component {
 	renderAirCabel() {
 		const {handleInputChange, calcWorks} = this.props;
 		return (
@@ -27,6 +27,12 @@ class CityBuilding extends React.Component {
 	render() {
 		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
 		const {works, category} = data;
+
+		const renderNoWorks = () => {
+			return (
+				<h2>Данные работы не выполняются</h2>
+			);
+		}
 
 		return (
 			<div>
@@ -142,13 +148,14 @@ class CityBuilding extends React.Component {
 					Кабельная
 				</label>
 				{+category === 2 && this.renderAirCabel()}
-				{works && <CityBuildingWorks data={data}
-																		 handleInputChange={handleInputChange}
-																		 calcWorksTpTtp={calcWorksTpTtp}
-																		 calcResult={calcResult} />}
+				{!works && renderNoWorks()}
+				{works && <BuildingWorks data={data}
+																 handleInputChange={handleInputChange}
+																 calcWorksTpTtp={calcWorksTpTtp}
+																 calcResult={calcResult} />}
 			</div>
 		)
 	}
 }
 
-export { CityBuilding }
+export { Building }

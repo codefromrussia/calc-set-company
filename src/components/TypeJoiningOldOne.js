@@ -1,7 +1,7 @@
 import React from 'react'
 
-// Существующее соединение для города Вариант 1
-class CityTypeJoiningOldOne extends React.Component {
+// Существующее соединение Вариант 1
+class TypeJoiningOldOne extends React.Component {
 	render() {
 		const {handleInputChange, calcResult } = this.props;
 		return (
@@ -25,4 +25,4 @@ class CityTypeJoiningOldOne extends React.Component {
 	}
 }
 
-export { CityTypeJoiningOldOne }
+export { TypeJoiningOldOne }

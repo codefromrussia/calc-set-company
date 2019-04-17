@@ -2,8 +2,8 @@ import React from 'react'
 import { Works } from'./Works'
 import { BuildingTpRtp } from'./BuildingTpRtp'
 
-//Работы для города
-class CityBuildingWorks extends React.Component {
+//Работы 
+class BuildingWorks extends React.Component {
 	render() {
 		const {data, handleInputChange, calcWorksTpTtp, calcResult} = this.props;
 		const {air, cabel, works} = data;
@@ -22,4 +22,4 @@ class CityBuildingWorks extends React.Component {
 	}
 }
 
-export { CityBuildingWorks }
+export { BuildingWorks }
