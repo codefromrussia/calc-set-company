@@ -9,33 +9,45 @@ class TypeJoining extends React.Component {
 		const {data, handleParamChange, handleInputChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
 		
 		return (
-			<div className="calc-type-joining">
-				<h2 className="calc-type-joining__title">Тип присоединения:</h2>
-				<label>
-					<input
-						id="type"
-						name="type-joining"
-						type="radio"
-						value="old"
-						onChange={handleInputChange}
-						/>
-					Существующее
-				</label>
-				<label>
-					<input
-						id="type"
-						name="type-joining"
-						type="radio"
-						value="new"
-						onChange={handleInputChange} />
-					Новое
-				</label>
+			<div>
+				<h2 className="calc__title">Тип присоединения:</h2>
+				<div className="calc__radio-wrap">
+					<label className="calc-radio">
+						<input
+							id="type"
+							className="calc-radio__input"
+							name="type"
+							type="radio"
+							value="old"
+							checked={data.checked}
+							onChange={handleInputChange}
+							/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Существующее
+						</span>
+					</label>
+					<label className="calc-radio">
+						<input
+							id="type"
+							className="calc-radio__input"
+							name="type"
+							type="radio"
+							value="new"
+							checked={data.checked}
+							onChange={handleInputChange} />
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Новое
+						</span>
+					</label>
+				</div>
 				{ data.type === 'old' && <TypeJoiningOld data={data}
-																								 handleParamChange={handleParamChange} 
-																								 handleInputChange={handleInputChange}
-																								 calcWorks={calcWorks}
-																								 calcWorksTpTtp={calcWorksTpTtp}
-																								 calcResult={calcResult} /> }
+																								handleParamChange={handleParamChange} 
+																								handleInputChange={handleInputChange}
+																								calcWorks={calcWorks}
+																								calcWorksTpTtp={calcWorksTpTtp}
+																								calcResult={calcResult} /> }
 				{ data.type === 'new' && <TypeJoiningNew data={data}
 																								 handleParamChange={handleParamChange} 
 																								 handleInputChange={handleInputChange}

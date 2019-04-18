@@ -5,9 +5,10 @@ class BuildingTpRtp extends React.Component {
 	renderRtpTp() {
 		const {handleInputChange, calcWorksTpTtp, calcResult} = this.props;
 		return (
-			<label>
+			<label className="calc-radio calc-radio-min">
 				<input
 					id="tpRtp"
+					className="calc-radio__input"
 					name="tprtp"
 					type="radio"
 					value="rtptp"
@@ -19,7 +20,10 @@ class BuildingTpRtp extends React.Component {
 						}
 					}
 				/>
-				РТП+ТП
+				<span className="calc-radio__box"></span>
+				<span className="calc-radio__text">
+					РТП+ТП
+				</span>
 			</label>
 		)
 	}
@@ -30,56 +34,72 @@ class BuildingTpRtp extends React.Component {
 
 		return (
 			<div>
-				<h2>Требуется ли Вам строительство ТП/РТП</h2>
-				<label>
-					<input
-						id="tpRtp"
-						name="tprtp"
-						type="radio"
-						value="no"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcResult()},1);
-								setTimeout(() => {calcWorksTpTtp()},1);
+				<div className="hr18"></div>
+				<h2 className="calc__title">Требуется ли Вам строительство ТП/РТП</h2>
+				<div className="calc__radio-wrap">
+					<label className="calc-radio calc-radio-min">
+						<input
+							id="tpRtp"
+							className="calc-radio__input"
+							name="tprtp"
+							type="radio"
+							value="no"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcResult()},1);
+									setTimeout(() => {calcWorksTpTtp()},1);
+								}
 							}
-						}
-					/>
-					Нет
-				</label>
-				<label>
-					<input
-						id="tpRtp"
-						name="tprtp"
-						type="radio"
-						value="tp"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcResult()},1);
-								setTimeout(() => {calcWorksTpTtp()},1);
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Нет
+						</span>
+					</label>
+					<label className="calc-radio calc-radio-min">
+						<input
+							id="tpRtp"
+							className="calc-radio__input"
+							name="tprtp"
+							type="radio"
+							value="tp"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcResult()},1);
+									setTimeout(() => {calcWorksTpTtp()},1);
+								}
 							}
-						}
-					/>
-					ТП
-				</label>
-				<label>
-					<input
-						id="tpRtp"
-						name="tprtp"
-						type="radio"
-						value="rtp"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcResult()},1);
-								setTimeout(() => {calcWorksTpTtp()},1);
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							ТП
+						</span>
+					</label>
+					<label className="calc-radio calc-radio-min">
+						<input
+							id="tpRtp"
+							className="calc-radio__input"
+							name="tprtp"
+							type="radio"
+							value="rtp"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcResult()},1);
+									setTimeout(() => {calcWorksTpTtp()},1);
+								}
 							}
-						}
-					/>
-					РТП
-				</label>
-				{+category === 2 && this.renderRtpTp()}
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							РТП
+						</span>
+					</label>
+					{+category === 2 && this.renderRtpTp()}
+				</div>
+				<div className="hr18"></div>
 				{worksTpRtp && tpRtp !== 'no' && <Works works={worksTpRtp}
 																								handleInputChange={handleInputChange}
 																								calcResult={calcResult} />}

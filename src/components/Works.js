@@ -6,10 +6,11 @@ class Works extends React.Component {
 
 		const worksTemplate = arr.map(function(item) {
 			return (
-				<div key={item.id}>
-					<label>
+				<div className="calc__radio-wrap" key={item.id}>
+					<label className="calc-radio">
 						<input
 							id={item.category}
+							className="calc-radio__input"
 							name={item.category}
 							type="radio"
 							value={item.price}
@@ -20,7 +21,10 @@ class Works extends React.Component {
 								}
 							}
 						/>
-						{item.text}
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							{item.text}
+						</span>
 					</label>
 				</div>
 			);
@@ -34,7 +38,7 @@ class Works extends React.Component {
 
 		return (
 			<div>
-				<h2>Набор работ:</h2>
+				<h2 className="calc__title">Набор работ:</h2>
 				{ this.renderWorks(works) }
 			</div>
 		)

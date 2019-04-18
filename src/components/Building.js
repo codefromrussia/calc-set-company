@@ -6,9 +6,10 @@ class Building extends React.Component {
 	renderAirCabel() {
 		const {handleInputChange, calcWorks} = this.props;
 		return (
-			<label>
+			<label className="calc-radio">
 				<input
 					id="powerLine"
+					className="calc-radio__input"
 					name="power-line"
 					type="radio"
 					value="aircabel"
@@ -19,136 +20,179 @@ class Building extends React.Component {
 						}
 					}
 				/>
-				Кабельная линия + Воздушная линия
+				<span className="calc-radio__box"></span>
+				<span className="calc-radio__text">
+					Кабельная линия + Воздушная линия
+				</span>
 			</label>
 		)
 	}
 
 	render() {
 		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
-		const {works, category} = data;
+		const {lBuilding, works, category} = data;
 
 		const renderNoWorks = () => {
 			return (
-				<h2>Данные работы не выполняются</h2>
+				<h2 className="calc__title">Данные работы не выполняются</h2>
 			);
 		}
 
 		return (
 			<div>
-				<input 
-					id="lBuilding"
-					type="number"
-					onChange={
-						(e) => {
-							handleInputChange(e);
-							setTimeout(() => {calcResult()},1);
-						}
-					}
-				/>
-				<p>Расстояние (по прямой) до ближайших электросетевых объектов, км
-от границы Вашего земельного участка</p>
-
-				<h2>Категория надежности:</h2>
-				<label>
-					<input
-						id="category"
-						name="category"
-						type="radio"
-						value="2"
+				<div className="calc-number">
+					<input 
+						id="lBuilding"
+						className="calc-number__input"
+						type="number"
+						value={lBuilding}
 						onChange={
 							(e) => {
 								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
 								setTimeout(() => {calcResult()},1);
 							}
 						}
 					/>
-					2
-				</label>
-				<label>
-					<input
-						id="category"
-						name="category"
-						type="radio"
-						value="3"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
-								setTimeout(() => {calcResult()},1);
+					<p className="calc-number__text">Расстояние (по прямой) до ближайших электросетевых объектов, км {'\n'} 
+	от границы Вашего земельного участка</p>
+				</div>
+				<div className="hr54"></div>
+				
+				<div className="calc__row">
+					<div className="calc__col">
+						<h2 className="calc__title">Категория надежности:</h2>
+						<div className="calc__radio-wrap">
+							<label className="calc-radio calc-radio-min">
+								<input
+									id="category"
+									className="calc-radio__input"
+									name="category"
+									type="radio"
+									value="2"
+									onChange={
+										(e) => {
+											handleInputChange(e);
+											setTimeout(() => {calcWorks()},1);
+											setTimeout(() => {calcResult()},1);
+										}
+									}
+								/>
+								<span className="calc-radio__box"></span>
+								<span className="calc-radio__text">
+									2
+								</span>
+							</label>
+							<label className="calc-radio calc-radio-min">
+								<input
+									id="category"
+									className="calc-radio__input"
+									name="category"
+									type="radio"
+									value="3"
+									onChange={
+										(e) => {
+											handleInputChange(e);
+											setTimeout(() => {calcWorks()},1);
+											setTimeout(() => {calcResult()},1);
+										}
+									}
+								/>
+								<span className="calc-radio__box"></span>
+								<span className="calc-radio__text">
+									3
+								</span>
+							</label>
+						</div>
+					</div>
+					<div className="calc__col">
+						<h2 className="calc__title">Уровень напряжения:</h2>
+						<div className="calc__radio-wrap">
+							<label className="calc-radio">
+								<input
+									id="voltage"
+									className="calc-radio__input"
+									name="voltage"
+									type="radio"
+									value="до 1"
+									onChange={
+										(e) => {
+											handleInputChange(e);
+											setTimeout(() => {calcWorks()},1);
+										}
+									}
+								/>
+								<span className="calc-radio__box"></span>
+								<span className="calc-radio__text">
+									до 1кВ (НН)
+								</span>
+							</label>
+							<label className="calc-radio">
+								<input
+									id="voltage"
+									className="calc-radio__input"
+									name="voltage"
+									type="radio"
+									value="до 20"
+									onChange={
+										(e) => {
+											handleInputChange(e);
+											setTimeout(() => {calcWorks()},1);
+										}
+									}
+								/>
+								<span className="calc-radio__box"></span>
+								<span className="calc-radio__text">
+									1-20кВ (СН2)
+								</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div className="hr18"></div>
+				<h2 className="calc__title">Линия электропередачи:</h2>
+				<div className="calc__radio-wrap">
+					<label className="calc-radio">
+						<input
+							id="powerLine"
+							className="calc-radio__input"
+							name="power-line"
+							type="radio"
+							value="air"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcWorks()},1);
+								}
 							}
-						}
-					/>
-					3
-				</label>
-
-				<h2>Уровень напряжения:</h2>
-				<label>
-					<input
-						id="voltage"
-						name="voltage"
-						type="radio"
-						value="до 1"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Воздушная
+						</span>
+					</label>
+					<label className="calc-radio">
+						<input
+							id="powerLine"
+							className="calc-radio__input"
+							name="power-line"
+							type="radio"
+							value="cabel"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcWorks()},1);
+								}
 							}
-						}
-					/>
-					до 1кВ (НН)
-				</label>
-				<label>
-					<input
-						id="voltage"
-						name="voltage"
-						type="radio"
-						value="до 20"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
-							}
-						}
-					/>
-					1-20кВ (СН2)
-				</label>
-
-				<h2>Линия электропередачи:</h2>
-
-				<label>
-					<input
-						id="powerLine"
-						name="power-line"
-						type="radio"
-						value="air"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
-							}
-						}
-					/>
-					Воздушная
-				</label>
-				<label>
-					<input
-						id="powerLine"
-						name="power-line"
-						type="radio"
-						value="cabel"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcWorks()},1);
-							}
-						}
-					/>
-					Кабельная
-				</label>
-				{+category === 2 && this.renderAirCabel()}
-				{!works && renderNoWorks()}
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Кабельная
+						</span>
+					</label>
+					{+category === 2 && this.renderAirCabel()}
+				</div>
+				<div className="hr18"></div>
+				{works === null && renderNoWorks()}
 				{works && <BuildingWorks data={data}
 																 handleInputChange={handleInputChange}
 																 calcWorksTpTtp={calcWorksTpTtp}

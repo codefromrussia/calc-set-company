@@ -21,7 +21,7 @@ class App extends Component {
 		powerLine: '', //Линия электропередач
 		resultMaxPower: 0,
 		resultStandard: 0,
-		works: null, //Набор работ
+		works: '', //Набор работ
 		tpRtp: '', //Строительсво ТП/РТП
 		worksTpRtp: '', //Набор работ
 		air: 0, //Цена работ для воздушной ЛЭП
@@ -117,7 +117,7 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "cabel" && 
 								voltage === "до 1" ) {
-			this.setState({works: ""});
+			this.setState({works: null});
 		} else if ( location === "village" &&
 								+category === 3 && 
 								powerLine === "cabel" && 
@@ -137,7 +137,7 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "cabel" && 
 								voltage === "до 1" ) {
-			this.setState({works: ""});
+			this.setState({works: null});
 		} else if ( location === "village" &&
 								+category === 2 && 
 								powerLine === "cabel" && 
@@ -195,8 +195,8 @@ class App extends Component {
 								( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
 			this.result(536.6*x3*1.2, 15415.33*1.2);
 		}	else if ( location === "city" && //Пункт 1.1.2
-							(( x1 && x2 >= 15 &&  x2 <= 150 && type === "old" ) ||
-							( x3 >= 15 && x3 <= 150 && type === "new" )) ) {    
+							(( x1 && x2 > 15 &&  x2 <= 150 && type === "old" ) ||
+							( x3 > 15 && x3 <= 150 && type === "new" )) ) {    
 			this.result(536.6*x3*1.2, 15415.33*1.2);
 		}	else if ( location === "city" && //Пункт 1.1.3.1
 								building === "no" &&
@@ -360,31 +360,49 @@ class App extends Component {
 	render() {
 		return (
 			<div className="calc">
-				<div className="calc-content">
-					<h1 className="calc__title">Калькулятор стоимости технологического присоединения
-					в Пензе и Пензенской области сетевой организацией ООО "СК"</h1>
-					<p className="calc__description">
-						Калькулятор стоимости ТП предназначен для онлайн-расчета ориентировочной стоимости
-						технологического присоединения в соответствии с утвержденными ставками платы
-						с учетом допущений по объему мероприятий сетевой организации
-						по присоединению объекта.
-					</p>
+				<div className="calc__content">
+					<div className="calc__header">
+						<h1 className="calc__title">Калькулятор стоимости технологического присоединения
+						в Пензе и Пензенской области сетевой организацией ООО "СК"</h1>
+						<p className="calc__p">
+							Калькулятор стоимости ТП предназначен для онлайн-расчета ориентировочной стоимости
+							технологического присоединения в соответствии с утвержденными ставками платы
+							с учетом допущений по объему мероприятий сетевой организации
+							по присоединению объекта.
+						</p>
+					</div>
 					<Location handleInputChange={this.handleInputChange} />
 					{this.state.location && <TypeJoining data={this.state}
 																							 handleParamChange={this.handleParamChange} 
-																							 handleInputChange={this.handleInputChange} 
+																							 handleInputChange={this.handleInputChange}
+																							 handleRadioChange={this.handleRadioChange} 
 																							 calcWorks={this.calcWorks}
 																							 calcWorksTpTtp={this.calcWorksTpTtp}
 																							 calcResult={this.calcResult} />}
 				</div>
-				<div className="calc-sidebar">
-					<h2>Суммы с учетом НДС</h2>
-					<p>Итого по ставке
-за максимальную мощность
-(руб./кВт) <b>{this.state.resultMaxPower}</b>	</p>
-					<p>Итого
-по стандартизированной
-ставке (руб.) <b>{this.state.resultStandard}</b></p>
+				<div className="calc__sidebar calc-sidebar">
+					<div className="calc-sidebar__header">
+						<div className="calc-sidebar__border">
+							<h2 className="calc-sidebar__title"><span>Суммы с учетом НДС</span></h2>
+							<p className="calc-sidebar__result">Итого по ставке {'\n'}
+							за максимальную мощность {'\n'}
+							(руб./кВт) <b>{this.state.resultMaxPower}</b>	</p>
+							<p className="calc-sidebar__result">Итого {'\n'}
+							по стандартизированной {'\n'}
+							ставке (руб.) <b>{this.state.resultStandard}</b></p>
+						</div>
+						<button className="calc-sidebar__btn">Отправить заявку</button>
+					</div>
+					<p className="calc-sidebar__footer">
+						Выполненный расчет является 
+						ориентировочным, итоговая стоимость 
+						технологического присоединения будет 
+						определена сетевой организацией 
+						в соответствии с утвержденными ставками 
+						после подачи Вами заявки на ТП 
+						при подготовке Договора об осуществлении 
+						технологического присоединения.
+					</p>
 				</div>
 			</div>
 		);

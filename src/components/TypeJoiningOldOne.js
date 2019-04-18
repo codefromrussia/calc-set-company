@@ -3,13 +3,17 @@ import React from 'react'
 // Существующее соединение Вариант 1
 class TypeJoiningOldOne extends React.Component {
 	render() {
-		const {handleInputChange, calcResult } = this.props;
+		const { data, handleInputChange, calcResult } = this.props;
+		const { l } = data;
+
 		return (
-			<div>
+			<div className="calc-number">
 				<input
 					id="l"
+					className="calc-number__input"
 					type="number"
 					min="0"
+					value={l}
 					onChange={
 						(e) => {
 							handleInputChange(e);
@@ -18,7 +22,7 @@ class TypeJoiningOldOne extends React.Component {
 					}
 					step="0.1"
 				/>
-				<p>Расстояние (по прямой) до ближайших электросетевых объектов, км
+				<p className="calc-number__text">Расстояние (по прямой) до ближайших электросетевых объектов, км {'\n'}
 от границы Вашего земельного участка</p>
 			</div>
 		)

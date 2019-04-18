@@ -4,27 +4,37 @@ import React from 'react'
 class Location extends React.Component {
 	render() {
 		return (
-			<div className="calc-location">
-				<h2 className="calc-location__title">Территориальное расположение:</h2>
-				<label>
-					<input
-						id="location"
-						name="location"
-						type="radio"
-						value="city"
-						onChange={this.props.handleInputChange}
-					/>
-					Город, пгт.
-				</label>
-				<label>
-					<input
-						id="location"
-						name="location"
-						type="radio"
-						value="village"
-						onChange={this.props.handleInputChange} />
-					Сельская местность
-				</label>
+			<div className="calc__location">
+				<h2 className="calc__title">Территориальное расположение:</h2>
+				<div className="calc__radio-wrap">
+					<label className="calc-radio">
+						<input
+							id="location"
+							className="calc-radio__input"
+							name="location"
+							type="radio"
+							value="city"
+							onChange={this.props.handleInputChange}
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Город, пгт.
+						</span>
+					</label>
+					<label className="calc-radio">
+						<input
+							id="location"
+							className="calc-radio__input"
+							name="location"
+							type="radio"
+							value="village"
+							onChange={this.props.handleInputChange} />
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Сельская местность
+						</span>
+					</label>
+				</div>
 			</div>
 		)
 	}

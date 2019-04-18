@@ -8,32 +8,42 @@ class TypeJoiningOldThree extends React.Component {
 		const {building} = data;
 
 		return (
-			<div className="calc-building">
-				<h2 className="calc-building__title">Требуется ли вам строительство?</h2>
-				<label>
-					<input
-						id="building"
-						name="building"
-						type="radio"
-						value="yes"
-						onChange={handleInputChange}
-					/>
-					Да
-				</label>
-				<label>
-					<input
-						id="building"
-						name="building"
-						type="radio"
-						value="no"
-						onChange={
-							(e) => {
-								handleInputChange(e);
-								setTimeout(() => {calcResult()},1);
-							}
-						} />
-					Нет
-				</label>
+			<div>
+				<h2 className="calc__title">Требуется ли вам строительство?</h2>
+				<div className="calc__radio-wrap">
+					<label className="calc-radio calc-radio-min">
+						<input
+							id="building"
+							className="calc-radio__input"
+							name="building"
+							type="radio"
+							value="yes"
+							onChange={handleInputChange}
+						/>
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Да
+						</span>
+					</label>
+					<label className="calc-radio calc-radio-min">
+						<input
+							id="building"
+							className="calc-radio__input"
+							name="building"
+							type="radio"
+							value="no"
+							onChange={
+								(e) => {
+									handleInputChange(e);
+									setTimeout(() => {calcResult()},1);
+								}
+							} />
+						<span className="calc-radio__box"></span>
+						<span className="calc-radio__text">
+							Нет
+						</span>
+					</label>
+				</div>
 				{building === 'yes' && <Building data={data}
 																				 handleInputChange={handleInputChange}
 																				 calcWorks={calcWorks}

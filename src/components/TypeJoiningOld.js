@@ -6,37 +6,46 @@ import { TypeJoiningOldOne } from'./TypeJoiningOldOne'
 class TypeJoiningOld extends React.Component {
 	render() {
 		const {data, handleParamChange, handleInputChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
-		const {x2} = data;
+		const {x1, x2} = data;
 
 		return (
 			<div>
-				<input
-					id="x1"
-					type="number"
-					onChange={
-						(e) => {
-							handleParamChange(e);
-							setTimeout(() => {calcResult()},1);
-						}
-					}
-					min="0"
-				/>
-				<p>Ранее выбранная мощность, кВт</p>
-				<input
-					id="x2"
-					type="number"
-					onChange={
-						(e) => {
-							handleParamChange(e);
-							setTimeout(() => {calcResult()},1);
-						}
-					}
-					min="0"
-					max="8900"
-				/>
-				<p>Требуемая Максимальная мощность, кВт</p>
-				{x2 > 0 && x2 <= 15 && <TypeJoiningOldOne handleInputChange={handleInputChange}
-																									calcResult={calcResult} />}
+				<div className="calc-type-joining__number">
+					<div className="calc-number">
+						<input
+							id="x1"
+							className="calc-number__input"
+							type="number"
+							value={x1}
+							onChange={
+								(e) => {
+									handleParamChange(e);
+									setTimeout(() => {calcResult()},1);
+								}
+							}
+							min="0"
+						/>
+						<p className="calc-number__text">Ранее выбранная {'\n'} мощность, кВт</p>
+						<input
+							id="x2"
+							className="calc-number__input"
+							type="number"
+							value={x2}
+							onChange={
+								(e) => {
+									handleParamChange(e);
+									setTimeout(() => {calcResult()},1);
+								}
+							}
+							min="0"
+							max="8900"
+						/>
+						<p className="calc-number__text">Требуемая Максимальная {'\n'} мощность, кВт</p>
+					</div>
+					{x2 > 0 && x2 <= 15 && <TypeJoiningOldOne data={data}
+																										handleInputChange={handleInputChange}
+																										calcResult={calcResult} />}
+				</div>
 				{x2 >= 151 && x2 <= 8900 && <TypeJoiningOldThree data={data}
 																												 handleInputChange={handleInputChange}
 																												 calcWorks={calcWorks}
