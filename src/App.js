@@ -25,9 +25,13 @@ class App extends Component {
 		tpRtp: '', //Строительсво ТП/РТП
 		worksTpRtp: '', //Набор работ
 		air: 0, //Цена работ для воздушной ЛЭП
+		airMaxPower: 0, //Цена работ для воздушной ЛЭП за единицу максимальной мощности
 		cabel: 0, //Цена работ для кабельной ЛЭП
+		cabelMaxPower: 0, //Цена работ для кабельной ЛЭП за единицу максимальной мощности
 		tp: 0, //Цена работ для ТП
+		tpMaxPower: 0, //Цена работ для ТП за единицу максимальной мощности
 		rtp: 0, //Цена работ для РТП
+		rtpMaxPower: 0, //Цена работ для РТП за единицу максимальной мощности
 	}
 
 	//Расчёт параметров x1, x2, x3
@@ -43,10 +47,21 @@ class App extends Component {
 		});
 	}
 
-	//Запись остальных параметров
+	//Обработчик вводимы значений
 	handleInputChange = (e) => {
 		const { id, value } = e.currentTarget;
 		this.setState({ [id]: value });
+	}
+
+	//Обработчик выбранной работы
+	handleWorkChange = (e) => {
+		const { id, value, dataPrice } = e.currentTarget;
+		const idMaxPower = id + "MaxPower";
+
+		this.setState({ 
+			[id]: value,
+			[idMaxPower]: dataPrice,
+		});
 	}
 
 	//Обработка вариантов работ 
@@ -375,7 +390,7 @@ class App extends Component {
 					{this.state.location && <TypeJoining data={this.state}
 																							 handleParamChange={this.handleParamChange} 
 																							 handleInputChange={this.handleInputChange}
-																							 handleRadioChange={this.handleRadioChange} 
+																							 handleWorkChange={this.handleWorkChange} 
 																							 calcWorks={this.calcWorks}
 																							 calcWorksTpTtp={this.calcWorksTpTtp}
 																							 calcResult={this.calcResult} />}

@@ -5,7 +5,7 @@ import { TypeJoiningOldOne } from'./TypeJoiningOldOne'
 //Существующее соединение для города
 class TypeJoiningOld extends React.Component {
 	render() {
-		const {data, handleParamChange, handleInputChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
+		const {data, handleParamChange, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
 		const {x1, x2} = data;
 
 		return (
@@ -48,6 +48,7 @@ class TypeJoiningOld extends React.Component {
 				</div>
 				{x2 >= 151 && x2 <= 8900 && <TypeJoiningOldThree data={data}
 																												 handleInputChange={handleInputChange}
+																												 handleWorkChange={handleWorkChange}
 																												 calcWorks={calcWorks}
 																												 calcWorksTpTtp={calcWorksTpTtp}
 																												 calcResult={calcResult}/>}

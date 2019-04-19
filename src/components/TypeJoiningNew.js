@@ -5,7 +5,7 @@ import { TypeJoiningOldOne } from'./TypeJoiningOldOne'
 //Новое соединение
 class TypeJoiningNew extends React.Component {
 	render() {
-		const { data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
+		const { data, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
 		const { x3 } = data;
 
 		return (
@@ -34,6 +34,7 @@ class TypeJoiningNew extends React.Component {
 				</div>
 				{x3 >= 151 && x3 <= 8900 && <TypeJoiningOldThree data={data}
 																												 handleInputChange={handleInputChange}
+																												 handleWorkChange={handleWorkChange}
 																												 calcWorks={calcWorks}
 																												 calcWorksTpTtp={calcWorksTpTtp}
 																												 calcResult={calcResult}/>}

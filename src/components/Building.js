@@ -29,7 +29,7 @@ class Building extends React.Component {
 	}
 
 	render() {
-		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
+		const {data, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
 		const {lBuilding, works, category} = data;
 
 		const renderNoWorks = () => {
@@ -195,6 +195,7 @@ class Building extends React.Component {
 				{works === null && renderNoWorks()}
 				{works && <BuildingWorks data={data}
 																 handleInputChange={handleInputChange}
+																 handleWorkChange={handleWorkChange}
 																 calcWorksTpTtp={calcWorksTpTtp}
 																 calcResult={calcResult} />}
 			</div>

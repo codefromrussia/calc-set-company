@@ -4,7 +4,7 @@ import { Building } from'./Building'
 // Существующее соединение Вариант 3
 class TypeJoiningOldThree extends React.Component {
 	render() {
-		const {data, handleInputChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
+		const {data, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
 		const {building} = data;
 
 		return (
@@ -46,6 +46,7 @@ class TypeJoiningOldThree extends React.Component {
 				</div>
 				{building === 'yes' && <Building data={data}
 																				 handleInputChange={handleInputChange}
+																				 handleWorkChange={handleWorkChange}
 																				 calcWorks={calcWorks}
 																				 calcWorksTpTtp={calcWorksTpTtp}
 																				 calcResult={calcResult} />}

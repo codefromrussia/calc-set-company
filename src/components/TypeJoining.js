@@ -6,7 +6,7 @@ import { TypeJoiningNew } from'./TypeJoiningNew'
 //Тип присоединения
 class TypeJoining extends React.Component {
 	render() {
-		const {data, handleParamChange, handleInputChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
+		const {data, handleParamChange, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
 		
 		return (
 			<div>
@@ -43,14 +43,16 @@ class TypeJoining extends React.Component {
 					</label>
 				</div>
 				{ data.type === 'old' && <TypeJoiningOld data={data}
-																								handleParamChange={handleParamChange} 
-																								handleInputChange={handleInputChange}
-																								calcWorks={calcWorks}
-																								calcWorksTpTtp={calcWorksTpTtp}
-																								calcResult={calcResult} /> }
+																								 handleParamChange={handleParamChange} 
+																								 handleInputChange={handleInputChange}
+																								 handleWorkChange={handleWorkChange}
+																								 calcWorks={calcWorks}
+																								 calcWorksTpTtp={calcWorksTpTtp}
+																								 calcResult={calcResult} /> }
 				{ data.type === 'new' && <TypeJoiningNew data={data}
 																								 handleParamChange={handleParamChange} 
 																								 handleInputChange={handleInputChange}
+																								 handleWorkChange={handleWorkChange}
 																								 calcWorks={calcWorks}
 																								 calcWorksTpTtp={calcWorksTpTtp}
 																								 calcResult={calcResult} /> }

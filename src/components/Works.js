@@ -2,7 +2,7 @@ import React from 'react'
 
 class Works extends React.Component {
 	renderWorks = (arr) => {
-		const { handleInputChange, calcResult } = this.props;
+		const { handleWorkChange, calcResult } = this.props;
 
 		const worksTemplate = arr.map(function(item) {
 			return (
@@ -14,9 +14,10 @@ class Works extends React.Component {
 							name={item.category}
 							type="radio"
 							value={item.price}
+							dataPrice={item.priceMaxPower}
 							onChange={
 								(e) => {
-									handleInputChange(e);
+									handleWorkChange(e);
 									setTimeout(() => {calcResult()},1);
 								}
 							}

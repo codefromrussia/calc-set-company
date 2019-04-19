@@ -29,7 +29,7 @@ class BuildingTpRtp extends React.Component {
 	}
 
 	render() {
-		const {data, handleInputChange, calcWorksTpTtp, calcResult} = this.props;
+		const {data, handleInputChange, handleWorkChange, calcWorksTpTtp, calcResult} = this.props;
 		const {tpRtp, worksTpRtp, category} = data;
 
 		return (
@@ -101,7 +101,7 @@ class BuildingTpRtp extends React.Component {
 				</div>
 				<div className="hr18"></div>
 				{worksTpRtp && tpRtp !== 'no' && <Works works={worksTpRtp}
-																								handleInputChange={handleInputChange}
+																								handleWorkChange={handleWorkChange}
 																								calcResult={calcResult} />}
 			</div>
 		)
