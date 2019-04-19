@@ -55,12 +55,12 @@ class App extends Component {
 
 	//Обработчик выбранной работы
 	handleWorkChange = (e) => {
-		const { id, value, dataPrice } = e.currentTarget;
-		const idMaxPower = id + "MaxPower";
+		const { id, value, alt } = e.currentTarget;
+		const idMaxPower = `${id}MaxPower`;
 
 		this.setState({ 
 			[id]: value,
-			[idMaxPower]: dataPrice,
+			[idMaxPower]: alt
 		});
 	}
 
@@ -196,172 +196,168 @@ class App extends Component {
 
 	//Обработка вариантов
 	calcResult = () => {	
-		const { x1, x2, x3, location, type, building, powerLine, l, tpRtp, cabel, air, category, lBuilding, tp, rtp } = this.state;
+		const { x1, x2, x3, type, building, powerLine, l, tpRtp, cabel, air, cabelMaxPower, airMaxPower, category, lBuilding, tp, rtp, tpMaxPower, rtpMaxPower } = this.state;
 
-		if ( location === "city" && //Пункт 1.1.1
-				 l > 0 &&
+		if ( l > 0 && //Пункт 1.1.1
 				 l <= 0.3 &&
 				 (( x1 && x2 <= 15 && type === "old" ) || 
 				 ( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
 			this.result(550, 550);
-		} else if ( location === "city" &&
-								l > 0.3 &&
+		} else if ( l > 0.3 &&
 								(( x1 && x2 <= 15 && type === "old" ) || 
 								( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
 			this.result(536.6*x3*1.2, 15415.33*1.2);
-		}	else if ( location === "city" && //Пункт 1.1.2
-							(( x1 && x2 > 15 &&  x2 <= 150 && type === "old" ) ||
+		}	else if ( (( x1 && x2 > 15 &&  x2 <= 150 && type === "old" ) ||
 							( x3 > 15 && x3 <= 150 && type === "new" )) ) {    
 			this.result(536.6*x3*1.2, 15415.33*1.2);
-		}	else if ( location === "city" && //Пункт 1.1.3.1
-								building === "no" &&
+		}	else if (	building === "no" && //Пункт 1.1.3.1
 							(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) ||
 							( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {   
 			this.result(536.6*x3*1.2, 15415.33*1.2);
-		} else if ( location === "city" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 3-ей кат. над. Воздушной линии
-								building === "yes" &&
+		} else if ( building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 3-ей кат. над. Воздушной линии
 								category === "3" &&
 								powerLine === "air" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {  
-			this.result(((536.6*x3)+(air*x3))*1.2, (15415.33 + (air*lBuilding))*1.2);
-		} else if ( location === "city" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 3-ей кат. над. Кабельной линии
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 ? 0: ((536.6*x3)+(airMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (air*lBuilding))*1.2);
+		} else if ( building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 3-ей кат. над. Кабельной линии
 								category === "3" &&
 								powerLine === "cabel" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {  
-			this.result(((536.6*x3)+(cabel*x3))*1.2, (15415.33 + (cabel*lBuilding))*1.2);
-		} else if ( location === "city" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Воздушной линии
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 ? 0: ((536.6*x3)+(cabelMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (cabel*lBuilding))*1.2);
+		} else if ( building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Воздушной линии
 								category === "2" &&
 								powerLine === "air" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result((((536.6*x3)+(air*x3))*2)*1.2, ((15415.33 + (air*lBuilding))*2)*1.2);
-		} else if ( location === "city" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Кабельной линии
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 ? 0: (((536.6*x3)+(airMaxPower*x3))*2)*1.2;
+			this.result(resultMaxPower, ((15415.33 + (air*lBuilding))*2)*1.2);
+		} else if ( building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Кабельной линии
 								category === "2" &&
 								powerLine === "cabel" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result((((536.6*x3)+(cabel*x3))*2)*1.2, ((15415.33 + (cabel*lBuilding))*2)*1.2);
-		} else if ( location === "city" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Воздушной и Кабельной линии
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 ? 0: (((536.6*x3)+(cabelMaxPower*x3))*2)*1.2;
+			this.result(resultMaxPower, ((15415.33 + (cabel*lBuilding))*2)*1.2);
+		} else if (	building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Воздушной и Кабельной линии
 								category === "2" &&
 								powerLine === "aircabel" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((Number(air)+Number(cabel))*x3))*1.2, (15415.33 + ((Number(air)+Number(cabel))*lBuilding))*1.2);
-		} else if ( location === "city" && //Город. 3-я кат. над. Воздушная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +cabelMaxPower === 0 ? 0: ((536.6*x3)+((Number(airMaxPower)+Number(cabelMaxPower))*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((Number(air)+Number(cabel))*lBuilding))*1.2);
+		} else if ( building === "yes" && //Город. 3-я кат. над. Воздушная ЛЭП. ТП
 								category === "3" &&
 								powerLine === "air" &&
 								tpRtp === "tp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+(air*x3)+(tp*x3))*1.2, (15415.33 + (air*lBuilding)+(tp*x3))*1.2);
-		} else if ( location === "city" && //Город. 3-я кат. над. Воздушная ЛЭП. РТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +tpMaxPower === 0 ? 0: ((536.6*x3)+(airMaxPower*x3)+(tpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (air*lBuilding)+(tp*x3))*1.2);
+		} else if ( building === "yes" && //Город. 3-я кат. над. Воздушная ЛЭП. РТП
 								category === "3" &&
 								powerLine === "air" &&
 								tpRtp === "rtp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {  
-			this.result(((536.6*x3)+(air*x3)+(rtp*x3))*1.2, (15415.33 + (air*lBuilding)+(rtp*x3))*1.2);
-		} else if ( location === "city" && //Город. 3-я кат. над. Кабельная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+(airMaxPower*x3)+(rtpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (air*lBuilding)+(rtp*x3))*1.2);
+		} else if (	building === "yes" && //Город. 3-я кат. над. Кабельная ЛЭП. ТП
 								category === "3" &&
 								powerLine === "cabel" &&
 								tpRtp === "tp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {  
-			this.result(((536.6*x3)+(cabel*x3)+(tp*x3))*1.2, (15415.33 + (cabel*lBuilding)+(tp*x3))*1.2);
-		} else if ( location === "city" && //Город. 3-я кат. над. Кабельная ЛЭП. РТП
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 || +tpMaxPower === 0 ? 0: ((536.6*x3)+(cabelMaxPower*x3)+(tpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (cabel*lBuilding)+(tp*x3))*1.2);
+		} else if (	building === "yes" && //Город. 3-я кат. над. Кабельная ЛЭП. РТП
 								category === "3" &&
 								powerLine === "cabel" &&
 								tpRtp === "rtp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+(cabel*x3)+(rtp*x3))*1.2, (15415.33 + (cabel*lBuilding)+(rtp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+(cabelMaxPower*x3)+(rtpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + (cabel*lBuilding)+(rtp*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Воздушная ЛЭП. ТП
 								category === "2" &&
 								powerLine === "air" &&
 								tpRtp === "tp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((air*x3)*2)+(tp*x3))*1.2, (15415.33 + ((air*lBuilding)*2)+(tp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Кабельная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +tpMaxPower === 0 ? 0: ((536.6*x3)+((airMaxPower*x3)*2)+(tpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((air*lBuilding)*2)+(tp*x3))*1.2);
+		} else if (	building === "yes" && //Город. 2-я кат. над. Кабельная ЛЭП. ТП
 								category === "2" &&
 								powerLine === "cabel" &&
 								tpRtp === "tp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((cabel*x3)*2)+(tp*x3))*1.2, (15415.33 + ((cabel*lBuilding)*2)+(tp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная ЛЭП. РТП
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 || +tpMaxPower === 0 ? 0: ((536.6*x3)+((cabelMaxPower*x3)*2)+(tpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((cabel*lBuilding)*2)+(tp*x3))*1.2);
+		} else if (	building === "yes" && //Город. 2-я кат. над. Воздушная ЛЭП. РТП
 								category === "2" &&
 								powerLine === "air" &&
 								tpRtp === "rtp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((air*x3)*2)+(rtp*x3))*1.2, (15415.33 + ((air*lBuilding)*2)+(rtp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Кабельная ЛЭП. РТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((airMaxPower*x3)*2)+(rtpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((air*lBuilding)*2)+(rtp*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Кабельная ЛЭП. РТП
 								category === "2" &&
 								powerLine === "cabel" &&
 								tpRtp === "rtp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((cabel*x3)*2)+(rtp*x3))*1.2, (15415.33 + ((cabel*lBuilding)*2)+(rtp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((cabelMaxPower*x3)*2)+(rtpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((cabel*lBuilding)*2)+(rtp*x3))*1.2);
+		} else if (	building === "yes" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. ТП
 								category === "2" &&
 								powerLine === "aircabel" &&
 								tpRtp === "tp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((Number(air) + Number(cabel))*x3)+(tp*x3))*1.2, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+(tp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +cabelMaxPower === 0 || +tpMaxPower === 0 ? 0: ((536.6*x3)+((Number(airMaxPower) + Number(cabelMaxPower))*x3)+(tpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+(tp*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. ТП
 								category === "2" &&
 								powerLine === "aircabel" &&
 								tpRtp === "rtp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((Number(air) + Number(cabel))*x3)+(rtp*x3))*1.2, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+(rtp*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная ЛЭП. РТП + ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +cabelMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((Number(airMaxPower) + Number(cabelMaxPower))*x3)+(rtpMaxPower*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+(rtp*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Воздушная ЛЭП. РТП + ТП
 								category === "2" &&
 								powerLine === "air" &&
 								tpRtp === "rtptp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((air*x3)*2)+((Number(tp) + Number(rtp))*x3))*1.2, (15415.33 + ((air*lBuilding)*2)+((Number(tp) + Number(rtp))*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Кабельная ЛЭП. РТП + ТП
-								building === "yes" &&
+			let resultMaxPower = +airMaxPower === 0 || +tpMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((airMaxPower*x3)*2)+((Number(tpMaxPower) + Number(rtpMaxPower))*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((air*lBuilding)*2)+((Number(tp) + Number(rtp))*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Кабельная ЛЭП. РТП + ТП
 								category === "2" &&
 								powerLine === "cabel" &&
 								tpRtp === "rtptp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((cabel*x3)*2)+((Number(tp) + Number(rtp))*x3))*1.2, (15415.33 + ((cabel*lBuilding)*2)+((Number(tp) + Number(rtp))*x3))*1.2);
-		} else if ( location === "city" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. РТП + ТП
-								building === "yes" &&
+			let resultMaxPower = +cabelMaxPower === 0 || +tpMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((cabelMaxPower*x3)*2)+((Number(tpMaxPower) + Number(rtpMaxPower))*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((cabel*lBuilding)*2)+((Number(tp) + Number(rtp))*x3))*1.2);
+		} else if ( building === "yes" && //Город. 2-я кат. над. Воздушная и Кабельная ЛЭП. РТП + ТП
 								category === "2" &&
 								powerLine === "aircabel" &&
 								tpRtp === "rtptp" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
-								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			this.result(((536.6*x3)+((Number(air) + Number(cabel))*x3)+((Number(tp) + Number(rtp))*x3))*1.2, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+((Number(tp) + Number(rtp))*x3)*1.2));
+								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) {
+			let resultMaxPower = +airMaxPower === 0 || +cabelMaxPower === 0 || +tpMaxPower === 0 || +rtpMaxPower === 0 ? 0: ((536.6*x3)+((Number(airMaxPower) + Number(cabelMaxPower))*x3)+((Number(tpMaxPower) + Number(rtpMaxPower))*x3))*1.2;
+			this.result(resultMaxPower, (15415.33 + ((Number(air) + Number(cabel))*lBuilding)+((Number(tp) + Number(rtp))*x3)*1.2));
 		} else {
 			this.result(0, 0);
 		}
@@ -369,7 +365,7 @@ class App extends Component {
 
 	//Расчёт результата
 	result = (resultMaxPower, resultStandard) => {
-		this.setState({ resultMaxPower: resultMaxPower, resultStandard: resultStandard })
+		this.setState({ resultMaxPower: Math.ceil(resultMaxPower), resultStandard: Math.ceil(resultStandard) })
 	}
 
 	render() {

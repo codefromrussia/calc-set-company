@@ -14,7 +14,7 @@ class Works extends React.Component {
 							name={item.category}
 							type="radio"
 							value={item.price}
-							dataPrice={item.priceMaxPower}
+							alt={item.priceMaxPower}
 							onChange={
 								(e) => {
 									handleWorkChange(e);
