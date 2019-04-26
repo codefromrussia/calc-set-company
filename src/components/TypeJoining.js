@@ -6,7 +6,7 @@ import { TypeJoiningNew } from'./TypeJoiningNew'
 //Тип присоединения
 class TypeJoining extends React.Component {
 	render() {
-		const {data, handleParamChange, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
+		const {data, reset, handleParamChange, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult } = this.props;
 		
 		return (
 			<div>
@@ -20,7 +20,7 @@ class TypeJoining extends React.Component {
 							type="radio"
 							value="old"
 							checked={data.checked}
-							onChange={handleInputChange}
+							onChange={reset}
 							/>
 						<span className="calc-radio__box"></span>
 						<span className="calc-radio__text">
@@ -35,7 +35,7 @@ class TypeJoining extends React.Component {
 							type="radio"
 							value="new"
 							checked={data.checked}
-							onChange={handleInputChange} />
+							onChange={reset} />
 						<span className="calc-radio__box"></span>
 						<span className="calc-radio__text">
 							Новое

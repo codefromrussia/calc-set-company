@@ -3,6 +3,7 @@ import React from 'react'
 //Территориальное расположение
 class Location extends React.Component {
 	render() {
+		const { reset } = this.props;
 		return (
 			<div className="calc__location">
 				<h2 className="calc__title">Территориальное расположение:</h2>
@@ -14,7 +15,7 @@ class Location extends React.Component {
 							name="location"
 							type="radio"
 							value="city"
-							onChange={this.props.handleInputChange}
+							onChange={reset}
 						/>
 						<span className="calc-radio__box"></span>
 						<span className="calc-radio__text">
@@ -28,7 +29,8 @@ class Location extends React.Component {
 							name="location"
 							type="radio"
 							value="village"
-							onChange={this.props.handleInputChange} />
+							onChange={reset}
+						/>
 						<span className="calc-radio__box"></span>
 						<span className="calc-radio__text">
 							Сельская местность

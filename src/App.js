@@ -5,8 +5,9 @@ import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage
 
 import './App.css';
 
+
 class App extends Component {
-	state = {
+	initialState = {
 		location: '',
 		type: '',
 		building: '',
@@ -32,6 +33,23 @@ class App extends Component {
 		tpMaxPower: 0, //Цена работ для ТП за единицу максимальной мощности
 		rtp: 0, //Цена работ для РТП
 		rtpMaxPower: 0, //Цена работ для РТП за единицу максимальной мощности
+	}
+
+	constructor(props) {
+		super(props)
+		this.state = this.initialState;
+	}
+	
+	//Сброс state кроме текущего
+	reset = (e) => {
+		const { id, value } = e.currentTarget;
+		const obj = this.initialState;
+		for (var key in obj) {
+			if ( key === id  ) {
+				obj[key] = value;
+			}
+		}
+		this.setState(obj);
 	}
 
 	//Расчёт параметров x1, x2, x3
@@ -77,7 +95,8 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "air" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVl, ...worksVl2]});
+			// this.setState({works: [...worksVl, ...worksVl2]}); Учитывется voltage.
+			this.setState({works: worksVl2});
 		} else if ( location === "city" &&
 								+category === 3 && 
 								powerLine === "cabel" && 
@@ -87,7 +106,8 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksCl, ...worksCl2]});
+			// this.setState({works: [...worksCl, ...worksCl2]}); Учитывется voltage.
+			this.setState({works: worksCl2});
 		} else if ( location === "city" &&  // Город 2-я категория надёжности
 								+category === 2 && 
 								powerLine === "air" && 
@@ -97,7 +117,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "air" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVl, ...worksVl2]});
+			// this.setState({works: [...worksVl, ...worksVl2]}); Учитывется voltage.
+			this.setState({works: worksVl2});
 		} else if ( location === "city" &&
 								+category === 2 && 
 								powerLine === "cabel" && 
@@ -107,7 +128,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksCl, ...worksCl2]});
+			// this.setState({works: [...worksCl, ...worksCl2]}); Учитывется voltage.
+			this.setState({works: worksCl2});
 		} else if ( location === "city" &&
 								+category === 2 && 
 								powerLine === "aircabel" && 
@@ -117,7 +139,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "aircabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVl, ...worksVl2, ...worksCl, ...worksCl2]});
+			// this.setState({works: [...worksVl, ...worksVl2, ...worksCl, ...worksCl2]}); Учитывется voltage.
+			this.setState({works: [...worksVl2, ...worksCl2]});
 		} else if ( location === "village" && // Село 3-я категория надёжности
 								+category === 3 && 
 								powerLine === "air" && 
@@ -127,7 +150,8 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "air" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVlVillage, ...worksVl2Village]});
+			// this.setState({works: [...worksVlVillage, ...worksVl2Village]}); Учитывется voltage.
+			this.setState({works: worksVl2Village});
 		} else if ( location === "village" &&
 								+category === 3 && 
 								powerLine === "cabel" && 
@@ -137,7 +161,8 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: worksClVillage});
+			// this.setState({works: worksClVillage}); Учитывется voltage.
+			this.setState({works: null});
 		} else if ( location === "village" &&  // Село 2-я категория надёжности
 								+category === 2 && 
 								powerLine === "air" && 
@@ -147,7 +172,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "air" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVlVillage, ...worksVl2Village]});
+			// this.setState({works: [...worksVlVillage, ...worksVl2Village]});  Учитывется voltage.
+			this.setState({works: worksVl2Village});
 		} else if ( location === "village" &&
 								+category === 2 && 
 								powerLine === "cabel" && 
@@ -157,7 +183,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: worksClVillage});
+			// this.setState({works: worksClVillage}); Учитывется voltage.
+			this.setState({works: null});
 		} else if ( location === "village" &&
 								+category === 2 && 
 								powerLine === "aircabel" && 
@@ -167,7 +194,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "aircabel" && 
 								voltage === "до 20" ) {
-			this.setState({works: [...worksVlVillage, ...worksVl2Village, ...worksClVillage]});
+			// this.setState({works: [...worksVlVillage, ...worksVl2Village, ...worksClVillage]});  Учитывется voltage.
+			this.setState({works: worksVl2Village});
 		} else {
 			this.setState({works: ''});
 		}
@@ -382,8 +410,10 @@ class App extends Component {
 							по присоединению объекта.
 						</p>
 					</div>
-					<Location handleInputChange={this.handleInputChange} />
+					<Location handleInputChange={this.handleInputChange}
+										reset={this.reset} />
 					{this.state.location && <TypeJoining data={this.state}
+																							 reset={this.reset}
 																							 handleParamChange={this.handleParamChange} 
 																							 handleInputChange={this.handleInputChange}
 																							 handleWorkChange={this.handleWorkChange} 
