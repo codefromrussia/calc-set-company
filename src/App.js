@@ -224,13 +224,20 @@ class App extends Component {
 
 	//Обработка вариантов
 	calcResult = () => {	
-		const { x1, x2, x3, type, building, powerLine, l, tpRtp, cabel, air, cabelMaxPower, airMaxPower, category, lBuilding, tp, rtp, tpMaxPower, rtpMaxPower } = this.state;
+		const { x1, x2, x3, location, type, building, powerLine, l, tpRtp, cabel, air, cabelMaxPower, airMaxPower, category, lBuilding, tp, rtp, tpMaxPower, rtpMaxPower } = this.state;
 
 		if ( l > 0 && //Пункт 1.1.1
 				 l <= 0.3 &&
+				 location === 'city' &&
 				 (( x1 && x2 <= 15 && type === "old" ) || 
 				 ( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
 			this.result(550, 550);
+		} else if ( l > 0 && //Пункт 1.1.1
+								l <= 0.5 &&
+								location === 'village' &&
+								(( x1 && x2 <= 15 && type === "old" ) || 
+								( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
+						this.result(550, 550);
 		} else if ( l > 0.3 &&
 								(( x1 && x2 <= 15 && type === "old" ) || 
 								( x3 > 0 && x3 <= 15 && type === "new" )) ) { 
@@ -264,16 +271,16 @@ class App extends Component {
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			let resultMaxPower = +airMaxPower === 0 ? 0: (((536.6*x3)+(airMaxPower*x3))*2)*1.2;
-			this.result(resultMaxPower, ((15415.33 + (air*lBuilding))*2)*1.2);
+			let resultMaxPower = +airMaxPower === 0 ? 0: ((536.6*x3)+(airMaxPower*x3)*2)*1.2;
+			this.result(resultMaxPower, (15415.33 + (air*lBuilding)*2)*1.2);
 		} else if ( building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Кабельной линии
 								category === "2" &&
 								powerLine === "cabel" &&
 								tpRtp === "no" &&
 								(( x1 && x2 >= 151 && x2 <= 8900 && type === "old" ) || 
 								( x3 >= 151 && x3 <= 8900 && type === "new" )) ) { 
-			let resultMaxPower = +cabelMaxPower === 0 ? 0: (((536.6*x3)+(cabelMaxPower*x3))*2)*1.2;
-			this.result(resultMaxPower, ((15415.33 + (cabel*lBuilding))*2)*1.2);
+			let resultMaxPower = +cabelMaxPower === 0 ? 0: ((536.6*x3)+(cabelMaxPower*x3)*2)*1.2;
+			this.result(resultMaxPower, (15415.33 + (cabel*lBuilding)*2)*1.2);
 		} else if (	building === "yes" && //Пункт 1.1.3.2 БЕЗ строительсва ТП/РТП. Для 2-ой кат. над. Воздушной и Кабельной линии
 								category === "2" &&
 								powerLine === "aircabel" &&
