@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Location } from'./components/Location';
 import { TypeJoining } from'./components/TypeJoining';
+import { Modal } from'./components/Modal';
 import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage, worksVl2Village, worksClVillage, worksTpVillage, worksRtpVillage} from'./data/data.js'; // Input
 
 import './App.css';
@@ -33,7 +34,14 @@ class App extends Component {
 		tpMaxPower: 0, //Цена работ для ТП за единицу максимальной мощности
 		rtp: 0, //Цена работ для РТП
 		rtpMaxPower: 0, //Цена работ для РТП за единицу максимальной мощности
+		isOpenModal: false
 	}
+
+	//Открытие модального окна
+	openModal = () => this.setState({isOpenModal: true})
+	
+	//Закрытие модального окна 
+	closeModal = () => this.setState({isOpenModal: false})
 
 	constructor(props) {
 		super(props)
@@ -439,7 +447,8 @@ class App extends Component {
 							по стандартизированной {'\n'}
 							ставке (руб.) <b>{this.state.resultStandard}</b></p>
 						</div>
-						<button className="calc-sidebar__btn">Отправить заявку</button>
+						<button className="calc-sidebar__btn"
+										onClick={this.openModal}>Отправить заявку</button>
 					</div>
 					<p className="calc-sidebar__footer">
 						Выполненный расчет является 
@@ -452,6 +461,10 @@ class App extends Component {
 						технологического присоединения.
 					</p>
 				</div>
+				<Modal isOpenModal={this.state.isOpenModal}
+							 closeModal={this.closeModal}
+							 resultMaxPower={this.state.resultMaxPower}
+							 resultStandard={this.state.resultStandard}/>
 			</div>
 		);
 	}
