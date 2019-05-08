@@ -17,7 +17,7 @@ export class Modal extends React.Component {
 
 		const { name, phone, email } = this.state;
 
-		const { resultMaxPower, resultStandard, closeModal } = this.props;
+		const { resultMaxPower, resultStandard } = this.props;
 		
 		if(!(name && phone))  {
 			this.setState({ isValid: false });
@@ -28,7 +28,7 @@ export class Modal extends React.Component {
 		
 		axios
 		.post(
-			`/calc-mail.php`, {
+			`/calc/calc-mail.php`, {
 			projectName: 'ООО СК',
 			formSubject: 'Новая заявка',
 			name: name,
@@ -38,7 +38,7 @@ export class Modal extends React.Component {
 			resultStandard: resultStandard
 		})
 		.then((res) => {
-				setTimeout(closeModal, 2000);
+				setTimeout(this.closeModal, 2000);
 				this.successSendMessage();
 			})
 			.catch((err) => {
@@ -48,12 +48,19 @@ export class Modal extends React.Component {
 
 	successSendMessage = () => {
 		this.setState({
+			isSendMessage: true
+		})
+	}
+
+	closeModal = () => {
+		this.setState({
 			name: '',
 			phone: '',
 			email: '',
-			isSendMessage: true,
+			isSendMessage: null,
 			isValid: null
-		})
+		});
+		this.props.closeModal();
 	}
 
 	errorSendMessage = () => {
@@ -76,37 +83,37 @@ export class Modal extends React.Component {
 		}
 
 		return (
-			<div className="modal">
-				<button className="modal__close"
+			<div className="new-modal">
+				<button className="new-modal__close"
 								onClick={closeModal}></button>
-				<h2 className="modal__title">Оформление заявки</h2>
-				<form className="modal__form">
+				<h2 className="new-modal__title">Оформление заявки</h2>
+				<form className="new-modal__form">
 					<input id="name" 
-								 className="modal__input" 
+								 className="new-modal__input" 
 								 type="text"
 								 placeholder="Имя*"
 								 required
 								 value={name}
 								 onChange={this.changeInput} />
 					<input id="phone" 
-								 className="modal__input"
+								 className="new-modal__input"
 								 type="tel"
 								 placeholder="Телефон*" 
 								 required
 								 value={phone}
 								 onChange={this.changeInput} />
 					<input id="email"
-								 className="modal__input last-child"
+								 className="new-modal__input last-child"
 								 type="email"
 								 placeholder="E-mail"
 								 value={email}
 								 onChange={this.changeInput} />
-					<button className="modal__btn"
+					<button className="new-modal__btn"
 									onClick={ this.sendForm }>Отправить</button>
 
-					{ isSendMessage === true && <p className="modal__success">Заявка успешно отправлена</p> }
-					{ isSendMessage === false && <p className="modal__error">Упс! Сообщение не отправлено</p> }
-					{ isValid === false && <p className="modal__error">Заполните обязательные поля</p> }
+					{ isSendMessage === true && <p className="new-modal__success">Заявка успешно отправлена</p> }
+					{ isSendMessage === false && <p className="new-modal__error">Упс! Сообщение не отправлено</p> }
+					{ isValid === false && <p className="new-modal__error">Заполните обязательные поля</p> }
 					
 				</form>
 			</div>
