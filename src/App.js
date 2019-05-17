@@ -169,8 +169,8 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			// this.setState({works: worksClVillage}); Учитывется voltage.
-			this.setState({works: null});
+			this.setState({works: worksClVillage}); //Учитывется voltage.
+			// this.setState({works: null});
 		} else if ( location === "village" &&  // Село 2-я категория надёжности
 								+category === 2 && 
 								powerLine === "air" && 
@@ -180,8 +180,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "air" && 
 								voltage === "до 20" ) {
-			// this.setState({works: [...worksVlVillage, ...worksVl2Village]});  Учитывется voltage.
-			this.setState({works: worksVl2Village});
+			this.setState({works: [...worksVlVillage, ...worksVl2Village]});  //Учитывется voltage.
+			// this.setState({works: worksVl2Village});
 		} else if ( location === "village" &&
 								+category === 2 && 
 								powerLine === "cabel" && 
@@ -191,8 +191,8 @@ class App extends Component {
 								+category === 2 && 
 								powerLine === "cabel" && 
 								voltage === "до 20" ) {
-			// this.setState({works: worksClVillage}); Учитывется voltage.
-			this.setState({works: null});
+			this.setState({works: worksClVillage}); //Учитывется voltage.
+			// this.setState({works: null});
 		} else if ( location === "village" &&
 								+category === 2 && 
 								powerLine === "aircabel" && 
@@ -203,7 +203,8 @@ class App extends Component {
 								powerLine === "aircabel" && 
 								voltage === "до 20" ) {
 			// this.setState({works: [...worksVlVillage, ...worksVl2Village, ...worksClVillage]});  Учитывется voltage.
-			this.setState({works: worksVl2Village});
+			this.setState({works: [...worksVl2Village, ...worksClVillage]});  //Учитывется voltage.
+			// this.setState({works: worksVl2Village});
 		} else {
 			this.setState({works: ''});
 		}
