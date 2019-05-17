@@ -34,7 +34,7 @@ class Building extends React.Component {
 
 		const renderNoWorks = () => {
 			return (
-				<h2 className="calc__title">Данные работы не выполняются</h2>
+				<h2 className="calc__title">Для выполнения данного вида работ необходимо утвердить ставку платы в Управлении по регулированию тарифов и энергосбережения Пензенской области</h2>
 			);
 		}
 
