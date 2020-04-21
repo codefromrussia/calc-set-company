@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Location } from'./components/Location';
 import { TypeJoining } from'./components/TypeJoining';
 import { Modal } from'./components/Modal';
-import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage, worksVl2Village, worksClVillage, worksTpVillage, worksRtpVillage} from'./data/data.js'; // Input
+import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage, worksVl2Village, worksClVillage, worksClVillage1, worksTpVillage, worksRtpVillage} from'./data/data.js'; // Input
 
 import './App.css';
 
@@ -164,7 +164,7 @@ class App extends Component {
 								+category === 3 && 
 								powerLine === "cabel" && 
 								voltage === "до 1" ) {
-			this.setState({works: null});
+			this.setState({works: worksClVillage1});
 		} else if ( location === "village" &&
 								+category === 3 && 
 								powerLine === "cabel" && 
