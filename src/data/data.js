@@ -4,21 +4,21 @@ export const worksVl = [
 		id: 1,
 		text: 'опоры ж/б, СИП до 50мм2 включительно, алюм.',
 		price: 909050,
-		priceMaxPower: 6820.65,
+		priceMaxPower: 8302.70,
 		category: "air"
 	},
 	{
 		id: 2,
 		text: 'опоры ж/б, СИП от 50 до100мм2 включительно, алюм.',
 		price: 817303.93,
-		priceMaxPower: 4290.74,
+		priceMaxPower: 7655.63,
 		category: "air"
 	},
 	{
 		id: 3,
 		text: 'опоры ж/б, СИП от 100 до 200мм2 включительно, алюм.',
 		price: 2216445.97,
-		priceMaxPower: 0,
+		priceMaxPower: 951.49,
 		category: "air"
 	}
 ];
@@ -47,63 +47,63 @@ export const worksCl = [
 		id: 7,
 		text: 'прокладка в траншеях, одножильный кабель с	резиновой и пластмассовой изоляцией, сечение от 50 до 100 мм2 включительно',
 		price: 1386950.32,
-		priceMaxPower: 0,
+		priceMaxPower: 70272.15,
 		category: "cabel"
 	},
 	{
 		id: 9,
 		text: 'прокладка в траншеях, многожильный кабель с бумажной изоляцией, сечение до 50мм2 включительно',
 		price: 1645062.58,
-		priceMaxPower: 10283.56,
+		priceMaxPower: 11693.04,
 		category: "cabel"
 	},
 	{
 		id: 10,
 		text: 'прокладка в траншеях, многожильный кабель с бумажной изоляцией, сечение от 50 до 100мм2 включительно',
 		price: 1691455.22,
-		priceMaxPower: 4263.24,
+		priceMaxPower: 3300.29,
 		category: "cabel"
 	},
 	{
 		id: 11,
 		text: 'прокладка в траншеях, многожильный кабель с бумажной изоляцией, сечение от 100 до 200 мм2 включительно',
 		price: 1578506.36,
-		priceMaxPower: 3645.63,
+		priceMaxPower: 4013.01,
 		category: "cabel"
 	},
 	{
 		id: 12,
 		text: 'прокладка в траншеях, многожильный кабель с бумажной изоляцией, сечение от 200 до 500 мм2 включительно',
 		price: 1705084.09,
-		priceMaxPower: 5489.45,
+		priceMaxPower: 5865.83,
 		category: "cabel"
 	},
 	{
 		id: 13,
 		text: 'ГНБ, многожил., бум.изол., сечение от 50мм2 вкл.',
 		price: 5869803.00,
-		priceMaxPower: 6945.06,
+		priceMaxPower: 6114.38,
 		category: "cabel"
 	},
 	{
 		id: 14,
 		text: 'ГНБ, многожил., бум.изол., сечение от 50 до 100 мм2 вкл.',
 		price: 6652372.78,
-		priceMaxPower: 10640.02,
+		priceMaxPower: 3830.85,
 		category: "cabel"
 	},
 	{
 		id: 15,
 		text: 'ГНБ, многожил., бум.изол., сечение от 100 до 200 мм2 вкл.',
 		price: 7256056.30,
-		priceMaxPower: 7616.71,
+		priceMaxPower: 1873.58,
 		category: "cabel"
 	},
 	{
 		id: 16,
 		text: 'ГНБ, многожил., бум.изол., сечение от 200 до 500 мм2 вкл.',
 		price: 7471337.93,
-		priceMaxPower: 6972.52,
+		priceMaxPower: 2873.59,
 		category: "cabel"
 	}
 ]
@@ -114,42 +114,42 @@ export const worksCl2 = [
 		id: 21,
 		text: 'прокладка в траншеях, многожильный кабель с бум. изоляцией, сечение до 50мм2 включительно',
 		price: 2956054.62,
-		priceMaxPower: 440.03,
+		priceMaxPower: 5378.16,
 		category: "cabel"
 	},
 	{
 		id: 22,
 		text: 'прокладка в траншеях, многожильный кабель с бум. изоляцией, сечение от 50 до 100 мм2 включительно',
 		price: 1957180.72,
-		priceMaxPower: 4525.30,
+		priceMaxPower: 7149.33,
 		category: "cabel"
 	},
 	{
 		id: 23,
 		text: 'прокладка в траншеях, многожильный кабель с бум. изоляцией, сечение от 100 до 200 мм2 включительно',
 		price: 2449694.22,
-		priceMaxPower: 1756.47,
+		priceMaxPower: 5070.09,
 		category: "cabel"
 	},
 	{
 		id: 24,
 		text: 'прокладка в траншеях, многожильный кабель с бум. изоляцией, сечение от 200 до 500 мм2',
 		price: 2281869.22,
-		priceMaxPower: 4219.84,
+		priceMaxPower: 27370.37,
 		category: "cabel"
 	},
 	{
 		id: 25,
 		text: 'ГНБ, многожил., бум.изол., сечение от 100 до 200мм2 вкл.',
 		price: 8526679.00,
-		priceMaxPower: 3599.92,
+		priceMaxPower: 1044.01,
 		category: "cabel"
 	},
 	{
 		id: 26,
 		text: 'ГНБ, многожил., бум.изол., сечение от 200 до 500мм2 вкл.',
 		price: 8802726.15,
-		priceMaxPower: 4053.91,
+		priceMaxPower: 4310.69,
 		category: "cabel"
 	},
 ];
@@ -333,7 +333,7 @@ export const worksClVillage1 = [
 		priceMaxPower: 0,
 		category: "cabel"
 	}
-]
+];
 
 // Село. Набор работ "Кабельная линия". Уровень напряжения до 20кв
 export const worksClVillage = [
@@ -386,43 +386,36 @@ export const worksTpVillage = [
 	{
 		id: 54,
 		text: 'ТП, однотрансформаторная, до 25кВА включительно',
-		price: 10297.15,
-		priceMaxPower: 10297.15,
+		price: 10812.00,
+		priceMaxPower: 10812.00,
 		category: "tp"
 	},
 	{
 		id: 55,
 		text: 'ТП, однотрансформаторная, от 25 до 100кВА включительно',
-		price: 6803.88,
-		priceMaxPower: 6803.88,
+		price: 6131.26,
+		priceMaxPower: 6131.26,
 		category: "tp"
 	},
 	{
 		id: 56,
 		text: 'ТП, однотрансформаторная, от 100 до 250кВА включительно',
-		price: 3873.26,
-		priceMaxPower: 3873.26,
+		price: 4455.77,
+		priceMaxPower: 4455.77,
 		category: "tp"
 	},
 	{
 		id: 57,
 		text: 'ТП, однотрансформаторная, от 250 до 500кВА включительно',
-		price: 3116.95,
-		priceMaxPower: 3116.95,
+		price: 3137.97,
+		priceMaxPower: 3137.97,
 		category: "tp"
 	},
 	{
 		id: 58,
 		text: 'ТП, двухтрансформаторная, от 500 до 900кВА включительно',
-		price: 5992.7,
-		priceMaxPower: 5992.7,
-		category: "tp"
-	},
-	{
-		id: 59,
-		text: 'ТП, двухтрансформаторная, свыше 1000кВА',
-		price: 10981.5,
-		priceMaxPower: 10981.5,
+		price: 2558.43,
+		priceMaxPower: 2558.43,
 		category: "tp"
 	}
 ];
