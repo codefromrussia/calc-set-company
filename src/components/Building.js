@@ -30,13 +30,61 @@ class Building extends React.Component {
 
 	render() {
 		const {data, handleInputChange, handleWorkChange, calcWorks, calcWorksTpTtp, calcResult} = this.props;
-		const {lBuilding, works, category} = data;
+		const { lBuilding, works, category, powerLine, location, voltage } = data;
 
 		const renderNoWorks = () => {
 			return (
 				<h2 className="calc__title">Для выполнения данного вида работ необходимо утвердить ставку платы в Управлении по регулированию тарифов и энергосбережения Пензенской области</h2>
 			);
-		}
+    }
+    
+    const renderReklauzer = () => {
+      return (
+        <div>
+          <h2 className="calc__title">Требуется реклаузер?</h2>
+          <div className="calc__radio-wrap">
+            <label className="calc-radio calc-radio-min">
+              <input
+                id="reklauzer"
+                className="calc-radio__input"
+                name="reklauzer"
+                type="radio"
+                value="yes"
+                onChange={
+                  (e) => {
+                    handleInputChange(e);
+                    setTimeout(() => {calcResult()},1);
+                  }
+                }
+              />
+              <span className="calc-radio__box"></span>
+              <span className="calc-radio__text">
+                Да
+              </span>
+            </label>
+            <label className="calc-radio calc-radio-min">
+              <input
+                id="reklauzer"
+                className="calc-radio__input"
+                name="reklauzer"
+                type="radio"
+                value="no"
+                onChange={
+                  (e) => {
+                    handleInputChange(e);
+                    setTimeout(() => {calcResult()},1);
+                  }
+                }
+              />
+              <span className="calc-radio__box"></span>
+              <span className="calc-radio__text">
+                Нет
+              </span>
+            </label>
+          </div>
+        </div>
+      )
+    }
 
 		return (
 			<div>
@@ -159,8 +207,8 @@ class Building extends React.Component {
 							type="radio"
 							value="air"
 							onChange={
-								(e) => {
-									handleInputChange(e);
+                (e) => {
+                  handleInputChange(e);
 									setTimeout(() => {calcWorks()},1);
 								}
 							}
@@ -178,8 +226,8 @@ class Building extends React.Component {
 							type="radio"
 							value="cabel"
 							onChange={
-								(e) => {
-									handleInputChange(e);
+                (e) => {
+                  handleInputChange(e);
 									setTimeout(() => {calcWorks()},1);
 								}
 							}
@@ -198,6 +246,7 @@ class Building extends React.Component {
 																 handleWorkChange={handleWorkChange}
 																 calcWorksTpTtp={calcWorksTpTtp}
 																 calcResult={calcResult} />}
+        {powerLine === 'cabel' && location === 'village' && voltage === 'до 20' && renderReklauzer()}
 			</div>
 		)
 	}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Location } from'./components/Location';
 import { TypeJoining } from'./components/TypeJoining';
 import { Modal } from'./components/Modal';
-import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage, worksVl2Village, worksClVillage, worksClVillage1, worksTpVillage, worksRtpVillage} from'./data/data.js'; // Input
+import { worksVl, worksVl2, worksTp, worksRtp, worksCl, worksCl2, worksVlVillage, worksVl2Village, worksClVillage, worksClVillage1, worksTpVillage, worksRtpVillage, worksRpVillage} from'./data/data.js'; // Input
 
 import './App.css';
 
@@ -409,7 +409,19 @@ class App extends Component {
 
 	//Расчёт результата
 	result = (resultMaxPower, resultStandard) => {
-		this.setState({ resultMaxPower: Math.ceil(resultMaxPower), resultStandard: Math.ceil(resultStandard) })
+    if (this.state.reklauzer === 'yes') {
+      const priceWrorkRpVillage = worksRpVillage[0].price
+
+      this.setState({
+        resultMaxPower: Math.ceil(resultMaxPower),
+        resultStandard: Math.ceil(resultStandard + priceWrorkRpVillage)
+      })
+    } else {
+      this.setState({
+        resultMaxPower: Math.ceil(resultMaxPower),
+        resultStandard: Math.ceil(resultStandard)
+      })
+    }
 	}
 
 	render() {
