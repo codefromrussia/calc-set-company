@@ -41,7 +41,7 @@ class Building extends React.Component {
     const renderReklauzer = () => {
       return (
         <div>
-          <h2 className="calc__title">Требуется реклаузер?</h2>
+          <h2 className="calc__title">Требуется реклоузер?</h2>
           <div className="calc__radio-wrap">
             <label className="calc-radio calc-radio-min">
               <input

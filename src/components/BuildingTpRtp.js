@@ -100,7 +100,7 @@ class BuildingTpRtp extends React.Component {
 					{+category === 2 && this.renderRtpTp()}
 				</div>
 				<div className="hr18"></div>
-				{worksTpRtp && tpRtp !== 'no' && <Works works={worksTpRtp}
+				{worksTpRtp && tpRtp !== 'no' && tpRtp !== 'rtp' && <Works works={worksTpRtp}
 																								handleWorkChange={handleWorkChange}
 																								calcResult={calcResult} />}
 			</div>
